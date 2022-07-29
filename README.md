@@ -34,6 +34,23 @@ Windows under both VC++7 and VC++8.
 There are a few Windows-specific details; see the [Windows README](README_windows.txt)
 for more information.
 
+For Windows user:
+You can use ctemplate.sln in Visual Studio.
+If you encounter the following errors:
+```
+fatal error C1083: Cannot open include file: 'tests/statemachine_test_fsm.h': No such file or directory
+fatal error C1083: Cannot open include file: 'htmlparser/htmlparser_fsm.h': No such file or directory
+fatal error C1083: Cannot open include file: 'htmlparser/jsparser_fsm.h': No such file or directory
+```
+You should do the following steps:
+```
+cd src/htmlparser
+./generate_fsm.py htmlparser_fsm.config > htmlparser_fsm.h
+./generate_fsm.py jsparser_fsm.config > jsparser_fsm.h
+./generate_fsm.py ../tests/statemachine_test_fsm.config > ../tests/statemachine_test_fsm.h
+```
+
+
 ## CTemplate and Threads
 
 The ctemplate library has thread support, so it works properly in a threaded
